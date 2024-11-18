@@ -83,5 +83,14 @@ namespace F24Week11TypedDataSets
             LoadProducts();
             MessageBox.Show("Product updated");
         }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            int id = int.Parse(txtId.Text);
+            
+            adpProducts.Delete(id);
+            LoadProducts();
+            MessageBox.Show("Product deleted");
+        }
     }
 }
