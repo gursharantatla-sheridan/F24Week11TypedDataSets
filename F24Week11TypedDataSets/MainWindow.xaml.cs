@@ -19,6 +19,7 @@ namespace F24Week11TypedDataSets
         // table adapter
         NorthwindDataSetTableAdapters.ProductsTableAdapter adpProducts = new NorthwindDataSetTableAdapters.ProductsTableAdapter();
         NorthwindDataSetTableAdapters.CategoriesTableAdapter adpCategories = new NorthwindDataSetTableAdapters.CategoriesTableAdapter();
+        NorthwindDataSetTableAdapters.ProdsWithCatsTableAdapter adpProdsWithCats = new NorthwindDataSetTableAdapters.ProdsWithCatsTableAdapter();
 
         // data table
         NorthwindDataSet.ProductsDataTable tblProducts = new NorthwindDataSet.ProductsDataTable();
@@ -105,6 +106,12 @@ namespace F24Week11TypedDataSets
             cmbCategories.ItemsSource = adpCategories.GetCategories();
             cmbCategories.DisplayMemberPath = "CategoryName";
             cmbCategories.SelectedValuePath = "CategoryID";
+        }
+
+        private void cmbCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int catId = (int)cmbCategories.SelectedValue;
+            grdProducts.ItemsSource = adpProdsWithCats.GetData(catId);
         }
     }
 }
