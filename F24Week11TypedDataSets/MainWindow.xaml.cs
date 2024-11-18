@@ -60,5 +60,28 @@ namespace F24Week11TypedDataSets
                 MessageBox.Show("Invalid ID. Please try again.");
             }
         }
+
+        private void btnInsert_Click(object sender, RoutedEventArgs e)
+        {
+            string name = txtName.Text;
+            decimal price = decimal.Parse(txtPrice.Text);
+            short quantity = short.Parse(txtQuantity.Text);
+
+            adpProducts.Insert(name, price, quantity);
+            LoadProducts();
+            MessageBox.Show("New product added");
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            int id = int.Parse(txtId.Text);
+            string name = txtName.Text;
+            decimal price = decimal.Parse(txtPrice.Text);
+            short quantity = short.Parse(txtQuantity.Text);
+
+            adpProducts.Update(name, price, quantity, id);
+            LoadProducts();
+            MessageBox.Show("Product updated");
+        }
     }
 }
