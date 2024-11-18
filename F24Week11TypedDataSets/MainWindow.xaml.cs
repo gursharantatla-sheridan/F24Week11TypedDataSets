@@ -18,6 +18,7 @@ namespace F24Week11TypedDataSets
     {
         // table adapter
         NorthwindDataSetTableAdapters.ProductsTableAdapter adpProducts = new NorthwindDataSetTableAdapters.ProductsTableAdapter();
+        NorthwindDataSetTableAdapters.CategoriesTableAdapter adpCategories = new NorthwindDataSetTableAdapters.CategoriesTableAdapter();
 
         // data table
         NorthwindDataSet.ProductsDataTable tblProducts = new NorthwindDataSet.ProductsDataTable();
@@ -91,6 +92,19 @@ namespace F24Week11TypedDataSets
             adpProducts.Delete(id);
             LoadProducts();
             MessageBox.Show("Product deleted");
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            tblProducts = adpProducts.GetProductsByName(txtName.Text);
+            grdProducts.ItemsSource = tblProducts;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            cmbCategories.ItemsSource = adpCategories.GetCategories();
+            cmbCategories.DisplayMemberPath = "CategoryName";
+            cmbCategories.SelectedValuePath = "CategoryID";
         }
     }
 }
